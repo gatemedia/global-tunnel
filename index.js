@@ -115,8 +115,8 @@ globalTunnel.initialize = function(conf) {
   }
 
   try {
-    http.globalAgent  = globalTunnel._makeAgent(conf, 'http', conf.connectHttp);
-    https.globalAgent = globalTunnel._makeAgent(conf, 'https', conf.connectHttps);
+    http.globalAgent  = globalTunnel._makeAgent(conf, conf.protocolHttp || 'http', conf.connectHttp);
+    https.globalAgent = globalTunnel._makeAgent(conf, conf.protocolHttps || 'https', conf.connectHttps);
 
     http.request = globalTunnel._defaultedAgentRequest.bind(http, 'http');
     https.request = globalTunnel._defaultedAgentRequest.bind(https, 'https');
